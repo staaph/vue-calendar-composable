@@ -1,0 +1,29 @@
+{
+  "name": "vue-calendar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "lint": "eslint . --ext **/*.{vue,js,jsx,cjs,mjs,ts,tsx,cts,mts} --fix --ignore-path .gitignore",
+    "prepare": "husky install"
+  },
+  "keywords": [
+    "vue",
+    "vuejs",
+    "vue3",
+    "composable",
+    "calendar"
+  ],
+  "author": "staapg",
+  "license": "MIT",
+  "devDependencies": {
+    "@rushstack/eslint-patch": "^1.2.0",
+    "@types/node": "^18.14.2",
+    "@vue/eslint-config-typescript": "^11.0.2",
+    "eslint": "^8.34.0",
+    "eslint-plugin-vue": "^9.9.0",
+    "husky": "^8.0.3",
+    "typescript": "~4.8.4"
+  }
+}
