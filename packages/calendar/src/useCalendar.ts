@@ -2,9 +2,9 @@ import {computed, reactive, Ref, unref, ref} from "vue";
 import dayjs, {Dayjs} from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import isoWeek from "dayjs/plugin/isoWeek";
-import {LocaleKeyArr} from "./types/calendar/LocaleKey";
-import type {Date, LocaleKey} from "./types/calendar/CalendarTypes";
-import type {MaybeRef} from "./types/utils";
+import {LocaleKeyArr} from "../types/calendar/LocaleKey";
+import type {Date, LocaleKey} from "../types/calendar/CalendarTypes";
+import type {MaybeRef} from "../types/utils";
 
 //locales
 import "dayjs/locale/af";
