@@ -1,5 +1,5 @@
-import {computed, reactive, Ref, unref, ref} from "vue";
-import dayjs, {Dayjs} from "dayjs";
+import {computed, reactive, unref, ref} from "vue";
+import dayjs, { type Dayjs} from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import isoWeek from "dayjs/plugin/isoWeek";
 import {LocaleKeyArr} from "../types/calendar/LocaleKey";
@@ -157,9 +157,9 @@ dayjs.extend(isoWeek);
 
 interface CalendarConfig {
   date?: Date | Dayjs
-  week?: Ref<number>
-  month?: Ref<number>
-  year?: Ref<number>
+  week?: MaybeRef<number>
+  month?: MaybeRef<number>
+  year?: MaybeRef<number>
   type?: MaybeRef<"week" | "month">
   adaptUserLanguage?: MaybeRef<boolean>
   startOnSunday?: MaybeRef<boolean>
@@ -205,12 +205,12 @@ export const useCalendar = (options: CalendarConfig = {}) => {
   const dayjsReference = computed(() => {
     return unref(calendarType) === "month"
       ? dayjs()
-        .year(options?.year?.value ?? editableDates.year)
-        .month(options?.month?.value ?? editableDates.month)
+        .year(unref(options?.year) ?? editableDates.year)
+        .month(unref(options?.month) ?? editableDates.month)
       : dayjs()
-        .year(options?.year?.value ?? editableDates.year)
-        .month(options?.month?.value ?? editableDates.month)
-        .isoWeek(options?.week?.value ?? editableDates.week);
+        .year(unref(options?.year) ?? editableDates.year)
+        .month(unref(options?.month) ?? editableDates.month)
+        .isoWeek(unref(options?.week) ?? editableDates.week);
   }
   );
 
