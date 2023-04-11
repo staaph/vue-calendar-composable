@@ -28,9 +28,9 @@ const calendar = useCalendar();
 The \`CalendarConfig\` object allows customization of the calendar's behavior:
 
 - \`date\`: Date | Dayjs (Optional) - The initial date to display.
-- \`week\`: Ref<number> (Optional) - Reference to a reactive week number.
-- \`month\`: Ref<number> (Optional) - Reference to a reactive month number.
-- \`year\`: Ref<number> (Optional) - Reference to a reactive year number.
+- \`week\`: MaybeRef<number> (Optional) - Reference to a reactive week number.
+- \`month\`: MaybeRef<number> (Optional) - Reference to a reactive month number.
+- \`year\`: MaybeRef<number> (Optional) - Reference to a reactive year number.
 - \`type\`: "week" | "month" (Optional, default: "month") - The display mode of the calendar.
 - \`adaptUserLanguage\`: boolean (Optional, default: true) - Whether to adapt to the user's language or use English as default.
 - \`startOnSunday\`: boolean (Optional, default: false) - Whether the week should start on Sunday.
