@@ -251,8 +251,8 @@ export const useCalendar = (options: CalendarConfig = {}) => {
   });
 
   /**
-   * @param format see Dayjs for formatting options
-   * @returns array of all months
+   * see https://day.js.org/docs/en/display/format
+   * @returns Dayjs array of all months
    */
   const getMonths = computed(() => {
     const monthArr: Dayjs[] = [];
@@ -263,9 +263,9 @@ export const useCalendar = (options: CalendarConfig = {}) => {
   });
 
   /**
-   * set function
-   * @param type specify what should be incremented, increments by 1
-   * @param to sets date to number - pass idx
+   * manipulates our current Date
+   * @param type specify what should be incremented, in- or decrements by 1
+   * @param to sets date to number (pass idx from template here) or simply 'add' | 'decrement'
    */
   const set = (
     type: "week" | "month" | "year",
@@ -274,10 +274,16 @@ export const useCalendar = (options: CalendarConfig = {}) => {
     if (to === "add") editableDates[type] += 1;
     if (to === "decrement") editableDates[type] -= 1;
     else if (typeof to === "number") editableDates[type] = to;
-    return;
   };
 
-  const format = (dayjs: Dayjs, format: "week") => {
+  /**
+   * needed because of week formatting options due to isoWeek plugin
+   * https://day.js.org/docs/en/display/format
+   * @param dayjs Dayjs Object to convert
+   * @param format 'week' or string
+   * @return formatted dayjs date
+   */
+  const format = (dayjs: Dayjs, format: "week" | string): number | string => {
     if (format === "week") return dayjs.isoWeek();
     return dayjs.format(format);
   };
