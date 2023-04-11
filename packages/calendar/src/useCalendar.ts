@@ -1,10 +1,10 @@
-import {computed, reactive, unref, ref} from "vue";
-import dayjs, { type Dayjs} from "dayjs";
+import { computed, reactive, unref, ref } from "vue";
+import dayjs, { type Dayjs } from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import isoWeek from "dayjs/plugin/isoWeek";
-import {LocaleKeyArr} from "../types/calendar/LocaleKey";
-import type {Date, LocaleKey} from "../types/calendar/CalendarTypes";
-import type {MaybeRef} from "../types/utils";
+import { LocaleKeyArr } from "../types/calendar/LocaleKey";
+import type { Date, LocaleKey } from "../types/calendar/CalendarTypes";
+import type { MaybeRef } from "../types/utils";
 
 //locales
 import "dayjs/locale/af";
@@ -285,7 +285,7 @@ export const useCalendar = (options: CalendarConfig = {}) => {
   return {
     dates: getDates,
     months: getMonths,
-    current: {today: dayjs(), dayjs: dayjsReference},
+    current: { today: dayjs(), dayjs: dayjsReference },
     set,
     format,
   };

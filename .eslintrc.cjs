@@ -15,7 +15,8 @@ module.exports = {
     ecmaVersion: 'latest'
   },
   rules: {
-    "indent": ["error", 2],
-    "semi": [1, "always"]
+    "indent": [ "error", 2 ],
+    "semi": [ 1, "always" ],
+    "object-curly-spacing": [ 1, "always" ]
   }
 };
