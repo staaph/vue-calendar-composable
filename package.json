@@ -15,7 +15,7 @@
     "composable",
     "calendar"
   ],
-  "author": "staapg",
+  "author": "staaph",
   "license": "MIT",
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.2.0",
