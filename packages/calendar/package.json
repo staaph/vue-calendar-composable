@@ -1,10 +1,14 @@
 {
-  "name": "calendar",
-  "main": "./index.ts",
-  "types": "./index.ts",
-  "version": "0.1.0",
+  "name": "vue3-calendar-composable",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "version": "0.1.1",
   "author": "staaph",
   "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "homepage": "https://github.com/staaph/vue-calendar-composable#readme",
   "keywords": [
     "vue",
     "vuejs",

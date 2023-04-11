@@ -8,9 +8,9 @@ This composable is a calendar utility for Vue 3 projects, providing a flexible a
 ## Installation
 
 ```bash
-npm install xy
-yarn add xy
-pnpm add xy
+npm i vue3-calendar-composable
+yarn add vue3-calendar-composable
+pnpm add vue3-calendar-composable
 ```
 
 ## Usage
@@ -18,9 +18,9 @@ pnpm add xy
 Import the \`useCalendar\` composable in your component and provide the optional \`CalendarConfig\` object.
 
 ```javascript
-import { useCalendar } from "@/vue-calendar/useCalendar";
+import { useCalendar } from "vue3-calendar-composable";
 
-const calendar = useCalendar(options);
+const calendar = useCalendar();
 ```
 
 ### CalendarConfig
