@@ -2,11 +2,23 @@
   "name": "calendar",
   "main": "./index.ts",
   "types": "./index.ts",
+  "version": "0.1.0",
+  "author": "staaph",
+  "license": "MIT",
+  "keywords": [
+    "vue",
+    "vuejs",
+    "vue3",
+    "composable",
+    "calendar"
+  ],
   "peerDependencies": {
     "vue": "^3.2.47"
   },
   "devDependencies": {
-    "dayjs": "^1.11.7",
     "vue": "^3.2.47"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.7"
   }
 }

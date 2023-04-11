@@ -1,16 +1,14 @@
 {
+  "include": ["index.ts", "src/**/*.ts"],
   "compilerOptions": {
+    "lib": ["ES2022", "DOM"],
+    "target": "es6",
+    "moduleResolution": "NodeNext",
+    "module": "NodeNext",
+    "rootDir": "./",
+    "outDir": "./dist",
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true,
-    "moduleResolution": "node",
-    "preserveWatchOutput": true,
-    "skipLibCheck": true,
-    "noEmit": true,
     "strict": true,
-    "target": "ES2015"
-  },
-  "exclude": [
-    "node_modules"
-  ]
+    "declaration": true
+  }
 }
