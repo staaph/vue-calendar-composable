@@ -1,4 +1,5 @@
 import { useCalendar } from "./src/useCalendar";
-import type { Date, Current } from "./types/calendar/CalendarTypes";
+import type { CalendarDate, Current } from "./types/calendar/CalendarTypes";
+import type { Dayjs } from "dayjs";
 
-export { useCalendar, Date, Current };
+export { useCalendar, CalendarDate, Current, Dayjs };

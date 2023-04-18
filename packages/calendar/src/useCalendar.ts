@@ -3,7 +3,7 @@ import dayjs, { type Dayjs } from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import isoWeek from "dayjs/plugin/isoWeek";
 import { LocaleKeyArr } from "../types/calendar/LocaleKey";
-import type { Date, LocaleKey } from "../types/calendar/CalendarTypes";
+import type { CalendarDate, LocaleKey } from "../types/calendar/CalendarTypes";
 import type { MaybeRef } from "../types/utils";
 
 //locales
@@ -193,16 +193,13 @@ export const useCalendar = (options: CalendarConfig = {}) => {
   dayjs.locale(locale());
 
   const editableDates = reactive({
-    // @ts-expect-error TS2769: No overload matches this call.
     week: options.date ? dayjs(options.date).isoWeek() : dayjs().isoWeek(dayjs().isoWeek()).isoWeek(),
-    // @ts-expect-error TS2769: No overload matches this call.
     month: options.date ? dayjs(options.date).month() : dayjs().month(dayjs().month()).month(),
-    // @ts-expect-error TS2769: No overload matches this call.
     year: options.date ? dayjs(options.date).year() : dayjs().year(dayjs().year()).year(),
   });
 
   // reference object
-  const dayjsReference = computed(() => {
+  const dayjsReference = computed<Dayjs>(() => {
     return unref(calendarType) === "month"
       ? dayjs()
         .year(unref(options?.year) ?? editableDates.year)
@@ -218,7 +215,7 @@ export const useCalendar = (options: CalendarConfig = {}) => {
    * can be destructured in the template => v-for="{ date, isToday, key, isCurrent } in dates"
    * @returns Date Array containing everything for the calendar
    */
-  const getDates = computed<Date[]>(() => {
+  const getDates = computed<CalendarDate[]>(() => {
     // Calculate the start date
     let startDate: Dayjs;
     let endDate: Dayjs;
@@ -231,7 +228,7 @@ export const useCalendar = (options: CalendarConfig = {}) => {
     }
 
     // Generate all the dates within the 6-week period
-    const dates: Date[] = [];
+    const dates: CalendarDate[] = [];
     for (let d = startDate; d.isBefore(endDate); d = d.add(1, "day")) {
       const dayOfWeek = d.day();
       const onlyWeek = options?.onlyShowWeek ? 5 : 7;

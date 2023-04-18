@@ -2,7 +2,7 @@ import type { Dayjs } from "dayjs";
 import { ComputedRef } from "vue";
 import { LocaleKeyArr } from "./LocaleKey";
 
-export interface Date {
+export interface CalendarDate {
   date: Dayjs
   isToday: boolean
   key: string
