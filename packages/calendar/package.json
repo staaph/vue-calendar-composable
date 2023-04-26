@@ -19,7 +19,7 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "build": "pnpm tsc",
-    "publish": "pnpm publish"
+    "publish": "pnpm build && pnpm publish"
   },
   "peerDependencies": {
     "vue": "^3.2.47"
