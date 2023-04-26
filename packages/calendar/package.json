@@ -2,7 +2,7 @@
   "name": "vue3-calendar-composable",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "author": "staaph",
   "license": "MIT",
   "files": [
@@ -16,6 +16,11 @@
     "composable",
     "calendar"
   ],
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "build": "pnpm tsc",
+    "publish": "pnpm publish"
+  },
   "peerDependencies": {
     "vue": "^3.2.47"
   },

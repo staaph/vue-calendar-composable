@@ -70,7 +70,7 @@ The useCalendar composable exposes several methods for interacting with the cale
   get the isoWeek Number or use formatting options based on https://day.js.org/docs/en/display/format.
 
 ```
-dates: ComputedRef<CalendarDates[]>
+dates: ComputedRef<CalendarDate[]>
 months: ComputedRef<Dayjs[]> 
 current: {today: dayjs.Dayjs, dayjs: ComputedRef<Dayjs>}
 set: (type: ("week" | "month" | "year"), to: (number | "add" | "decrement")) => void 

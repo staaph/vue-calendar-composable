@@ -3,11 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "preinstall": "npx only-allow pnpm",
-    "lint": "eslint . --ext **/*.{vue,js,jsx,cjs,mjs,ts,tsx,cts,mts} --fix --ignore-path .gitignore",
-    "prepare": "husky install"
-  },
+  "author": "staaph",
+  "license": "MIT",
   "keywords": [
     "vue",
     "vuejs",
@@ -15,8 +12,11 @@
     "composable",
     "calendar"
   ],
-  "author": "staaph",
-  "license": "MIT",
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "lint": "eslint . --ext **/*.{vue,js,jsx,cjs,mjs,ts,tsx,cts,mts} --fix --ignore-path .gitignore",
+    "prepare": "husky install"
+  },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.2.0",
     "@types/node": "^18.14.2",
