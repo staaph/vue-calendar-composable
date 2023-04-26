@@ -10,7 +10,7 @@
     "type-check": "vue-tsc --noEmit"
   },
   "dependencies": {
-    "calendar": "workspace:*",
+    "vue3-calendar-composable": "workspace:*",
     "dayjs": "^1.11.7",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6"
