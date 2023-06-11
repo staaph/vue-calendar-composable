@@ -71,7 +71,7 @@ The useCalendar composable exposes several methods for interacting with the cale
 - format: A function to format a dayjs instance based on the provided format - pass the Dayjs instance and use week to
   get the isoWeek Number or use formatting options based on https://day.js.org/docs/en/display/format.
 
-```
+```ts
 dates: ComputedRef<CalendarDates[]>
 months: ComputedRef<Dayjs[]> 
 current: {today: dayjs.Dayjs, dayjs: ComputedRef<Dayjs>}
