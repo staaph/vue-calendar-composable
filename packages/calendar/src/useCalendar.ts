@@ -2,9 +2,10 @@ import { computed, reactive, unref, ref } from "vue";
 import dayjs, { type Dayjs } from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import isoWeek from "dayjs/plugin/isoWeek";
-import { LocaleKeyArr } from "../types/calendar/LocaleKey";
-import type { CalendarDate, LocaleKey } from "../types/calendar/CalendarTypes";
-import type { MaybeRef } from "../types/utils";
+import { LocaleKeyArr } from "../types/LocaleKey";
+import type { CalendarDate, LocaleKey } from "../types/CalendarTypes";
+import { CalendarConfig } from "../types/CalendarConfig";
+import { startOfWeek } from "./helpers";
 
 //locales
 import "dayjs/locale/af";
@@ -155,40 +156,22 @@ import "dayjs/locale/es-us";
 dayjs.extend(localizedFormat);
 dayjs.extend(isoWeek);
 
-interface CalendarConfig {
-  date?: Date | Dayjs
-  week?: MaybeRef<number>
-  month?: MaybeRef<number>
-  year?: MaybeRef<number>
-  type?: MaybeRef<"week" | "month">
-  adaptUserLanguage?: MaybeRef<boolean>
-  startOnSunday?: MaybeRef<boolean>
-  onlyShowWeek?: MaybeRef<boolean>
-}
-
-/**
- * helper to start week on sunday (only if provided by options)
- * @param day
- * @param weekStart
- */
-function startOfWeek(day: Dayjs, weekStart: number): Dayjs {
-  const diff = day.day() < weekStart ? 7 : 0;
-  return dayjs(day).subtract(day.day() - diff - weekStart, "day");
-}
 
 export const useCalendar = (options: CalendarConfig = {}) => {
   const calendarType = ref(options?.type ?? "month");
-  const startOnSunday = options?.startOnSunday ? 0 : 1;
+  const startOnSunday = ref(options?.startOnSunday ? 0 : 1);
 
   const locale = () => {
+    const userLanguage = options.userLanguage ? options.userLanguage : "en";
+    const lang = typeof window === "undefined" ? unref(userLanguage) : window.navigator.language;
+    const availableLanguage = LocaleKeyArr.includes(unref(userLanguage).slice(0, 2) as LocaleKey) ? unref(userLanguage) : "en";
+
     if (unref(options?.adaptUserLanguage) ?? true) {
-      return LocaleKeyArr.includes(
-        window.navigator.language.slice(0, 2) as LocaleKey
-      )
-        ? window.navigator.language :
-        "en";
+      return LocaleKeyArr.includes(lang.slice(0, 2) as LocaleKey)
+        ? lang
+        : availableLanguage;
     }
-    return "en";
+    return availableLanguage;
   };
   dayjs.locale(locale());
 
@@ -220,10 +203,10 @@ export const useCalendar = (options: CalendarConfig = {}) => {
     let startDate: Dayjs;
     let endDate: Dayjs;
     if (unref(calendarType) === "week") {
-      startDate = startOfWeek(dayjsReference.value.startOf('isoWeek').startOf('isoWeek'), startOnSunday);
+      startDate = startOfWeek(dayjsReference.value.startOf('isoWeek').startOf('isoWeek'), unref(startOnSunday));
       endDate = dayjsReference.value.endOf('isoWeek').endOf('isoWeek');
     } else {
-      startDate = startOfWeek(dayjsReference.value.startOf("month").startOf('isoWeek'), startOnSunday);
+      startDate = startOfWeek(dayjsReference.value.startOf("month").startOf('isoWeek'), unref(startOnSunday));
       endDate = startDate.add(42, "day");
     }
 
@@ -276,13 +259,13 @@ export const useCalendar = (options: CalendarConfig = {}) => {
   /**
    * needed because of week formatting options due to isoWeek plugin
    * https://day.js.org/docs/en/display/format
-   * @param dayjs Dayjs Object to convert
+   * @param dayjsDate Dayjs Object to convert
    * @param format 'week' or string
    * @return formatted dayjs date
    */
-  const format = (dayjs: Dayjs, format: "week" | string): number | string => {
-    if (format === "week") return dayjs.isoWeek();
-    return dayjs.format(format);
+  const format = (dayjsDate: Dayjs, format: "week" | string): number | string => {
+    if (format === "week") return dayjsDate.isoWeek();
+    return dayjsDate.format(format);
   };
 
   return {
@@ -293,3 +276,4 @@ export const useCalendar = (options: CalendarConfig = {}) => {
     format,
   };
 };
+
