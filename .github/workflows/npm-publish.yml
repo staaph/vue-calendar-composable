@@ -4,10 +4,12 @@
 name: Node.js Package
 
 on:
-  release:
-    types: [created]
+  push:
+    branches:
+      - release
 
 jobs:
+
   build:
     runs-on: ubuntu-latest
     steps:
@@ -15,6 +17,13 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          run_install: false
+      - working-directory: ./packages/calendar
+        run: pnpm install
       - working-directory: ./packages/calendar
         run: pnpm build
 
